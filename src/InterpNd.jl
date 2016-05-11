@@ -14,7 +14,7 @@ function call(itp::Interpolations.BSplineInterpolation,
     Float64[itp[ii] for ii in is]
 end
 
-interp1d = y -> interpolate(y, BSpline(Linear()), OnGrid())
+interp1d = y -> interpolate(y, BSpline(Quadratic(Flat())), OnGrid())
 
 export call, interp1d
 
