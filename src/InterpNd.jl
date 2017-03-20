@@ -2,10 +2,8 @@ module InterpNd
 
 using Interpolations
 
-import Base.call
-function call(itp::Interpolations.BSplineInterpolation,
-              x::AbstractVector,
-              xx::AbstractVector)
+function (itp::Interpolations.BSplineInterpolation)(x::AbstractVector,
+                                                    xx::AbstractVector)
     didx = [0; 1.0./diff(x)]
     is = map(eachindex(xx)) do i
         im = indmin(abs(x-xx[i]))
@@ -16,6 +14,6 @@ end
 
 interp1d = y -> interpolate(y, BSpline(Quadratic(Flat())), OnGrid())
 
-export call, interp1d
+export interp1d
 
 end # module
