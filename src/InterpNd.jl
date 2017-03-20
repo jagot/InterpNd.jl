@@ -12,6 +12,9 @@ function (itp::Interpolations.BSplineInterpolation)(x::AbstractVector,
     eltype(itp)[itp[ii] for ii in is]
 end
 
+(itp::Interpolations.BSplineInterpolation)(x::AbstractVector,
+                                           xx) = itp(x,[xx])[1]
+
 interp1d = y -> interpolate(y, BSpline(Quadratic(Flat())), OnGrid())
 
 export interp1d
