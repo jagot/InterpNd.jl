@@ -9,7 +9,7 @@ function (itp::Interpolations.BSplineInterpolation)(x::AbstractVector,
         im = indmin(abs(x-xx[i]))
         im - didx[im]*(x[im] - xx[i])
     end
-    Float64[itp[ii] for ii in is]
+    eltype(itp)[itp[ii] for ii in is]
 end
 
 interp1d = y -> interpolate(y, BSpline(Quadratic(Flat())), OnGrid())
